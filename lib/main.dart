@@ -33,12 +33,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   ScreenshotController screenshotController = ScreenshotController();
 
-  void storeImage() {
-    screenshotController.capture().then((capturedImage) async {
-      if (capturedImage != null) {
-        await ImageGallerySaver.saveImage(capturedImage);
-      }
-    });
+  Future<void> storeImage() async {
+    var capturedImage = await screenshotController.capture();
+    if (capturedImage != null) {
+      await ImageGallerySaver.saveImage(capturedImage);
+    }
   }
 
   @override
